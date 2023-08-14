@@ -8,7 +8,7 @@ import {
   selectAccount,
   setInputPassword,
 } from "../features/account/AccountSlice"
-import styles from "./Counter.module.css"
+import styles from "../features/account/Account.module.css"
 
 const Join = () => {
   const account = useAppSelector(selectAccount)

@@ -5,10 +5,10 @@ const Layout = () => {
   return (
     <>
       <Flex gap={8} h={40}>
-        <Link to={"/signin"}>
-          <Button>로그인</Button>
+        <Link to={"/"}>
+          <Button>홈</Button>
         </Link>
-        <Link to={"/signup"}>
+        <Link to={"/join"}>
           <Button>회원가입</Button>
         </Link>
         <Link to={"/loginDetail"}>

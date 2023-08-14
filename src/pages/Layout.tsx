@@ -11,8 +11,8 @@ const Layout = () => {
         <Link to={"/join"}>
           <Button>회원가입</Button>
         </Link>
-        <Link to={"/loginDetail"}>
-          <Button>로그인상태</Button>
+        <Link to={"/login"}>
+          <Button>로그인</Button>
         </Link>
       </Flex>
       <Outlet />

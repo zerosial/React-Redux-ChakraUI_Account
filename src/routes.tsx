@@ -1,3 +1,4 @@
+import Login from "./pages/Login"
 import Home from "./pages/Home"
 import Join from "./pages/Join"
 import Layout from "./pages/Layout"
@@ -17,6 +18,10 @@ export const router = createBrowserRouter([
       {
         path: "/join",
         element: <Join />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
       },
       {
         path: "/*",

@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks"
+import styles from "./Counter.module.css"
 import {
   decrement,
   increment,
@@ -8,8 +8,8 @@ import {
   incrementAsync,
   incrementIfOdd,
   selectCount,
-} from "./counterSlice"
-import styles from "./Counter.module.css"
+} from "../features/counter/counterSlice"
+import { useAppSelector, useAppDispatch } from "../app/hooks"
 
 export function Counter() {
   const count = useAppSelector(selectCount)

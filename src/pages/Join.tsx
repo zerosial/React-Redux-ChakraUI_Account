@@ -1,16 +1,16 @@
 import { useState } from "react"
 
-import { useAppSelector, useAppDispatch } from "../../app/hooks"
+import { useAppSelector, useAppDispatch } from "../app/hooks"
 import {
   initId,
   initPassword,
   setInputId,
   selectAccount,
   setInputPassword,
-} from "./AccountSlice"
+} from "../features/account/AccountSlice"
 import styles from "./Counter.module.css"
 
-export function Join() {
+const Join = () => {
   const account = useAppSelector(selectAccount)
   const dispatch = useAppDispatch()
   const [id, setId] = useState("")
@@ -67,3 +67,5 @@ export function Join() {
     </div>
   )
 }
+
+export default Join

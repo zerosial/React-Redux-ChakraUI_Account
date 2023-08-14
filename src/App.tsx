@@ -1,19 +1,11 @@
-import { Counter } from "./features/counter/Counter"
-import { Join } from "./features/counter/Join"
-import "./App.css"
+import { ChakraProvider, Grid, theme } from "@chakra-ui/react"
+import { RouterProvider } from "react-router-dom"
+import { router } from "./routes"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <Counter />
-        <Join />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-      </header>
-    </div>
-  )
-}
-
-export default App
+export const App = () => (
+  <ChakraProvider theme={theme}>
+    <Grid minH="100vh" p={3}>
+      <RouterProvider router={router} />
+    </Grid>
+  </ChakraProvider>
+)

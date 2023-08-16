@@ -25,16 +25,18 @@ export const AccountSlice = createSlice({
   initialState,
   reducers: {
     addAccount: (state, action: PayloadAction<AccountState>) => {
-      state.push(action.payload)
+      return [...state, action.payload]
     },
     removeAccount: (state, action: PayloadAction<number>) => {
-      state.splice(action.payload, 1)
+      return state.filter((_, index) => index !== action.payload)
     },
     updateAccount: (
       state,
       action: PayloadAction<{ index: number; updatedData: AccountState }>,
     ) => {
-      state[action.payload.index] = action.payload.updatedData
+      return state.map((account, index) =>
+        index === action.payload.index ? action.payload.updatedData : account,
+      )
     },
   },
 })

@@ -4,19 +4,16 @@ import { RootState } from "../../app/store"
 export interface AccountState {
   id: string
   password: string
-  status: "idle" | "loading" | "failed"
 }
 
 const initialState: AccountState[] = [
   {
     id: "test1",
     password: "test1",
-    status: "idle",
   },
   {
     id: "test2",
     password: "test2",
-    status: "idle",
   },
 ]
 

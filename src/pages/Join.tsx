@@ -1,13 +1,8 @@
 import { useState } from "react"
 
 import { useAppDispatch } from "../app/hooks"
-import {
-  addAccount,
-  removeAccount,
-  updateAccount,
-} from "../features/account/AccountSlice"
-import styles from "../features/account/Account.module.css"
-import { Container, Grid } from "@chakra-ui/react"
+import { addAccount } from "../features/account/AccountSlice"
+import { Button, Container, Grid, Input } from "@chakra-ui/react"
 
 const Join = () => {
   const dispatch = useAppDispatch()
@@ -19,7 +14,25 @@ const Join = () => {
 
   return (
     <Container maxW={"50%"}>
-      <Grid justifyItems="center"></Grid>
+      <Grid justifyItems="center">
+        <Input
+          aria-label="Set Id"
+          value={id}
+          onChange={(e) => setId(e.target.value)}
+        />
+        <Input
+          aria-label="Set Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Button
+          onClick={() =>
+            dispatch(addAccount({ id: idValue, password: passwordValue }))
+          }
+        >
+          add account
+        </Button>
+      </Grid>
     </Container>
   )
 }

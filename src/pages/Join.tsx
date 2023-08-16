@@ -38,22 +38,32 @@ const Join = () => {
           password: passwordValue,
         }),
       )
+      setId("")
+      setPassword("")
+      alert("회원가입 완료")
     }
   }
 
   return (
     <Container maxW={"50%"}>
       <Grid justifyItems="center" gap={4}>
-        <Input
-          aria-label="Set Id"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        />
-        <Input
-          aria-label="Set Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+        <form
+          onKeyDown={(e) => {
+            e.key === "Enter" && loginEventHandler()
+          }}
+        >
+          <Input
+            aria-label="Set Id"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
+          <Input
+            type="password"
+            aria-label="Set Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </form>
         <Button onClick={loginEventHandler}>add account</Button>
       </Grid>
     </Container>

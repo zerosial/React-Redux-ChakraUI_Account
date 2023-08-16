@@ -11,7 +11,7 @@ const Login = () => {
         <Text color="gray.300" mb={6}>
           혹시 회원가입이 아직이신가요?
         </Text>
-        <Button w={80} onClick={() => navigate("/signup")}>
+        <Button w={80} onClick={() => navigate("/join")}>
           회원가입
         </Button>
       </Grid>

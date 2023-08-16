@@ -14,7 +14,7 @@ const Join = () => {
 
   return (
     <Container maxW={"50%"}>
-      <Grid justifyItems="center">
+      <Grid justifyItems="center" gap={4}>
         <Input
           aria-label="Set Id"
           value={id}
@@ -27,7 +27,12 @@ const Join = () => {
         />
         <Button
           onClick={() =>
-            dispatch(addAccount({ id: idValue, password: passwordValue }))
+            dispatch(
+              addAccount({
+                id: idValue,
+                password: passwordValue,
+              }),
+            )
           }
         >
           add account

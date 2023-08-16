@@ -12,6 +12,7 @@ const Home = () => {
           <Text>회원번호 {index + 1}번</Text>
           <Text>{user.id}</Text>
           <Text>{user.password}</Text>
+          <Text>로그인 상태 : {user.status}</Text>
         </Box>
       ))}
     </Container>

@@ -4,16 +4,19 @@ import { RootState } from "../../app/store"
 export interface AccountState {
   id: string
   password: string
+  status?: "login" | "logout"
 }
 
 const initialState: AccountState[] = [
   {
     id: "test1",
     password: "test1",
+    status: "logout",
   },
   {
     id: "test2",
     password: "test2",
+    status: "logout",
   },
 ]
 
@@ -22,7 +25,7 @@ export const AccountSlice = createSlice({
   initialState,
   reducers: {
     addAccount: (state, action: PayloadAction<AccountState>) => {
-      return [...state, action.payload]
+      return [...state, { ...action.payload, status: "logout" }]
     },
     removeAccount: (state, action: PayloadAction<number>) => {
       return state.filter((_, index) => index !== action.payload)

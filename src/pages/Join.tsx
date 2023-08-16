@@ -12,6 +12,35 @@ const Join = () => {
   const idValue = String(id) || ""
   const passwordValue = String(password) || ""
 
+  // alert Redux로 관리
+  const isValidId = (idValue: string) => {
+    if (idValue.length < 5) {
+      alert("id는 5글자 이상 넣어주세요")
+      return false
+    }
+    return true
+  }
+
+  // alert Redux로 관리
+  const isValidPassword = (passwordValue: string) => {
+    if (passwordValue.length < 5) {
+      alert("password는 5글자 이상 넣어주세요")
+      return false
+    }
+    return true
+  }
+
+  const loginEventHandler = () => {
+    if (isValidId(idValue) && isValidPassword(passwordValue)) {
+      dispatch(
+        addAccount({
+          id: idValue,
+          password: passwordValue,
+        }),
+      )
+    }
+  }
+
   return (
     <Container maxW={"50%"}>
       <Grid justifyItems="center" gap={4}>
@@ -25,18 +54,7 @@ const Join = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button
-          onClick={() =>
-            dispatch(
-              addAccount({
-                id: idValue,
-                password: passwordValue,
-              }),
-            )
-          }
-        >
-          add account
-        </Button>
+        <Button onClick={loginEventHandler}>add account</Button>
       </Grid>
     </Container>
   )

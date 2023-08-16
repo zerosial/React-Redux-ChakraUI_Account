@@ -7,33 +7,39 @@ export interface AccountState {
   status: "idle" | "loading" | "failed"
 }
 
-const initialState: AccountState = {
-  id: "",
-  password: "",
-  status: "idle",
-}
+const initialState: AccountState[] = [
+  {
+    id: "test1",
+    password: "test1",
+    status: "idle",
+  },
+  {
+    id: "test2",
+    password: "test2",
+    status: "idle",
+  },
+]
 
 export const AccountSlice = createSlice({
   name: "Account",
   initialState,
   reducers: {
-    initId: (state) => {
-      state.id = "test"
+    addAccount: (state, action: PayloadAction<AccountState>) => {
+      state.push(action.payload)
     },
-    initPassword: (state) => {
-      state.password = "test2"
+    removeAccount: (state, action: PayloadAction<number>) => {
+      state.splice(action.payload, 1)
     },
-    setInputId: (state, action: PayloadAction<string>) => {
-      state.id = action.payload
-    },
-    setInputPassword: (state, action: PayloadAction<string>) => {
-      state.password = action.payload
+    updateAccount: (
+      state,
+      action: PayloadAction<{ index: number; updatedData: AccountState }>,
+    ) => {
+      state[action.payload.index] = action.payload.updatedData
     },
   },
 })
 
-export const { initId, initPassword, setInputId, setInputPassword } =
-  AccountSlice.actions
-export const selectAccount = (state: RootState) => state.account
+export const { addAccount, removeAccount, updateAccount } = AccountSlice.actions
+export const selectAccounts = (state: RootState) => state.account
 
 export default AccountSlice.reducer

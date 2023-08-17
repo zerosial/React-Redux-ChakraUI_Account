@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { RootState } from "../../app/store"
-
 export interface AccountState {
   id: string
   password: string
@@ -25,6 +24,15 @@ export const AccountSlice = createSlice({
   initialState,
   reducers: {
     addAccount: (state, action: PayloadAction<AccountState>) => {
+      const accountIndex = state.findIndex(
+        (account) => account.id === action.payload.id,
+      )
+
+      if (accountIndex !== -1) {
+        alert("이미 존재하는 Id 입니다.")
+        return
+      }
+
       alert("회원가입 성공")
       return [...state, { ...action.payload, status: "logout" }]
     },

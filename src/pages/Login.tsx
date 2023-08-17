@@ -1,9 +1,10 @@
-import { Button, Container, Divider, Grid, Input, Text } from "@chakra-ui/react"
+import { Button, Container, Divider, Grid, Text } from "@chakra-ui/react"
 import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { loginAccount } from "../features/account/AccountSlice"
 import { isValidInput } from "../utils/validation"
+import CustomForm from "components/CustomForm"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -29,20 +30,13 @@ const Login = () => {
     <Container maxW={"50%"}>
       <Grid justifyItems="center">
         <Grid justifyItems="center" gap={4}>
-          <form onKeyDown={handleKeyDown}>
-            <Input
-              aria-label="Set Id"
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-              mb={4}
-            />
-            <Input
-              type="password"
-              aria-label="Set Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </form>
+          <CustomForm
+            id={id}
+            password={password}
+            onIdChange={setId}
+            onPasswordChange={setPassword}
+            onKeyDown={handleKeyDown}
+          />
           <Button onClick={handleLogin}>로그인</Button>
         </Grid>
         <Divider my={6} />

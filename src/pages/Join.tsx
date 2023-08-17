@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { useAppDispatch } from "../app/hooks"
 import { addAccount } from "../features/account/AccountSlice"
-import { Button, Container, Grid, Input } from "@chakra-ui/react"
+import { Button, Container, Grid } from "@chakra-ui/react"
 import { isValidInput } from "../utils/validation"
+import CustomForm from "components/CustomForm"
 
 const Join = () => {
   const dispatch = useAppDispatch()
@@ -27,17 +28,12 @@ const Join = () => {
     <Container maxW={"50%"}>
       <Grid justifyItems="center" gap={4}>
         <form onKeyDown={handleKeyDown}>
-          <Input
-            aria-label="Set Id"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-            mb={4}
-          />
-          <Input
-            type="password"
-            aria-label="Set Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+          <CustomForm
+            id={id}
+            password={password}
+            onIdChange={setId}
+            onPasswordChange={setPassword}
+            onKeyDown={handleKeyDown}
           />
         </form>
         <Button onClick={handleJoin}>회원가입</Button>

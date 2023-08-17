@@ -2,19 +2,12 @@ import React, { useState } from "react"
 import { useAppDispatch } from "../app/hooks"
 import { addAccount } from "../features/account/AccountSlice"
 import { Button, Container, Grid, Input } from "@chakra-ui/react"
+import { isValidInput } from "../utils/validation"
 
 const Join = () => {
   const dispatch = useAppDispatch()
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
-
-  const isValidInput = (value: string) => {
-    if (value.trim().length <= 5) {
-      alert("아이디와 비밀번호는 5글자 이상 입력하세요")
-      return false
-    }
-    return true
-  }
 
   const handleJoin = () => {
     if (isValidInput(id) && isValidInput(password)) {

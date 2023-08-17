@@ -3,6 +3,7 @@ import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { loginAccount } from "../features/account/AccountSlice"
+import { isValidInput } from "../utils/validation"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -10,35 +11,17 @@ const Login = () => {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
-  const idValue = String(id) || ""
-  const passwordValue = String(password) || ""
-
-  const isValidId = (idValue: string) => {
-    if (idValue.length < 5) {
-      alert("id는 5글자 이상 넣어주세요")
-      return false
-    }
-    return true
-  }
-
-  const isValidPassword = (passwordValue: string) => {
-    if (passwordValue.length < 5) {
-      alert("password는 5글자 이상 넣어주세요")
-      return false
-    }
-    return true
-  }
-
-  const loginEventHandler = () => {
-    if (isValidId(idValue) && isValidPassword(passwordValue)) {
-      dispatch(
-        loginAccount({
-          id: idValue,
-          password: passwordValue,
-        }),
-      )
+  const handleLogin = () => {
+    if (isValidInput(id) && isValidInput(password)) {
+      dispatch(loginAccount({ id, password }))
       setId("")
       setPassword("")
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleLogin()
     }
   }
 
@@ -46,11 +29,7 @@ const Login = () => {
     <Container maxW={"50%"}>
       <Grid justifyItems="center">
         <Grid justifyItems="center" gap={4}>
-          <form
-            onKeyDown={(e) => {
-              e.key === "Enter" && loginEventHandler()
-            }}
-          >
+          <form onKeyDown={handleKeyDown}>
             <Input
               aria-label="Set Id"
               value={id}
@@ -64,7 +43,7 @@ const Login = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </form>
-          <Button onClick={loginEventHandler}>로그인</Button>
+          <Button onClick={handleLogin}>로그인</Button>
         </Grid>
         <Divider my={6} />
         <Text color="gray.300" mb={6}>

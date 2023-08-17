@@ -2,10 +2,9 @@ import { Button, Container, Grid, Input, Text } from "@chakra-ui/react"
 import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { loginAccount } from "../features/account/AccountSlice"
+import { logoutAccount } from "../features/account/AccountSlice"
 
 const Logout = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
@@ -31,10 +30,10 @@ const Logout = () => {
     return true
   }
 
-  const loginEventHandler = () => {
+  const logoutEventHandler = () => {
     if (isValidId(idValue) && isValidPassword(passwordValue)) {
       dispatch(
-        loginAccount({
+        logoutAccount({
           id: idValue,
           password: passwordValue,
         }),
@@ -56,7 +55,7 @@ const Logout = () => {
         <Grid justifyItems="center" gap={4}>
           <form
             onKeyDown={(e) => {
-              e.key === "Enter" && loginEventHandler()
+              e.key === "Enter" && logoutEventHandler()
             }}
           >
             <Input
@@ -72,7 +71,7 @@ const Logout = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </form>
-          <Button onClick={loginEventHandler}>로그아웃</Button>
+          <Button onClick={logoutEventHandler}>로그아웃</Button>
         </Grid>
       </Grid>
     </Container>

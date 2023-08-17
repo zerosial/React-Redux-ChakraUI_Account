@@ -3,10 +3,8 @@ import { useState } from "react"
 import { useAppDispatch } from "../app/hooks"
 import { addAccount } from "../features/account/AccountSlice"
 import { Button, Container, Grid, Input } from "@chakra-ui/react"
-import { useNavigate } from "react-router-dom"
 
 const Join = () => {
-  const navigate = useNavigate()
   const dispatch = useAppDispatch()
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
@@ -40,7 +38,8 @@ const Join = () => {
           password: passwordValue,
         }),
       )
-      navigate("/")
+      setId("")
+      setPassword("")
     }
   }
 

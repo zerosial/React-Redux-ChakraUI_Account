@@ -2,41 +2,24 @@ import { Button, Container, Grid, Input, Text } from "@chakra-ui/react"
 import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { logoutAccount } from "../features/account/AccountSlice"
+import { isValidInput } from "../utils/validation"
 
 const Logout = () => {
   const dispatch = useAppDispatch()
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
-  const idValue = String(id) || ""
-  const passwordValue = String(password) || ""
-
-  const isValidId = (idValue: string) => {
-    if (idValue.length < 5) {
-      alert("id는 5글자 이상 넣어주세요")
-      return false
-    }
-    return true
-  }
-
-  const isValidPassword = (passwordValue: string) => {
-    if (passwordValue.length < 5) {
-      alert("password는 5글자 이상 넣어주세요")
-      return false
-    }
-    return true
-  }
-
-  const logoutEventHandler = () => {
-    if (isValidId(idValue) && isValidPassword(passwordValue)) {
-      dispatch(
-        logoutAccount({
-          id: idValue,
-          password: passwordValue,
-        }),
-      )
+  const handleLogout = () => {
+    if (isValidInput(id) && isValidInput(password)) {
+      dispatch(logoutAccount({ id, password }))
       setId("")
       setPassword("")
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleLogout()
     }
   }
 
@@ -50,11 +33,7 @@ const Logout = () => {
           리덕스 연습임으로 따로 로그인 정보를 보존하진 않습니다
         </Text>
         <Grid justifyItems="center" gap={4}>
-          <form
-            onKeyDown={(e) => {
-              e.key === "Enter" && logoutEventHandler()
-            }}
-          >
+          <form onKeyDown={handleKeyDown}>
             <Input
               aria-label="Set Id"
               value={id}
@@ -68,7 +47,7 @@ const Logout = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </form>
-          <Button onClick={logoutEventHandler}>로그아웃</Button>
+          <Button onClick={handleLogout}>로그아웃</Button>
         </Grid>
       </Grid>
     </Container>

@@ -43,12 +43,18 @@ export const AccountSlice = createSlice({
         (account) => account.id === id && account.password === password,
       )
 
-      if (accountIndex !== -1) {
-        state[accountIndex].status = "login"
-        alert("로그인 성공")
-      } else {
-        alert("로그인 실패 Id와 Password를 확인해 주세요")
+      if (accountIndex === -1) {
+        alert("해당 계정이 존제하지 않습니다.")
+        return
       }
+
+      if (state[accountIndex].status === "login") {
+        alert("로그인 실패 이미 로그인 된 아이디입니다.")
+        return
+      }
+
+      state[accountIndex].status = "login"
+      alert("로그인 성공")
     },
 
     logoutAccount: (state, action: PayloadAction<AccountState>) => {
@@ -58,12 +64,18 @@ export const AccountSlice = createSlice({
         (account) => account.id === id && account.password === password,
       )
 
-      if (accountIndex !== -1) {
-        state[accountIndex].status = "logout"
-        alert("로그아웃 성공")
-      } else {
-        alert("로그아웃 실패 Id와 Password를 확인해 주세요")
+      if (accountIndex === -1) {
+        alert("해당 계정이 존제하지 않습니다.")
+        return
       }
+
+      if (state[accountIndex].status === "logout") {
+        alert("로그아웃 실패 이미 로그아웃 된 아이디입니다.")
+        return
+      }
+
+      state[accountIndex].status = "logout"
+      alert("로그아웃 성공")
     },
     removeAccount: (state, action: PayloadAction<number>) => {
       return state.filter((_, index) => index !== action.payload)

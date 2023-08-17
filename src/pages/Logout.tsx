@@ -1,7 +1,6 @@
 import { Button, Container, Grid, Input, Text } from "@chakra-ui/react"
 import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
 import { logoutAccount } from "../features/account/AccountSlice"
 
 const Logout = () => {
@@ -12,7 +11,6 @@ const Logout = () => {
   const idValue = String(id) || ""
   const passwordValue = String(password) || ""
 
-  // alert Redux로 관리
   const isValidId = (idValue: string) => {
     if (idValue.length < 5) {
       alert("id는 5글자 이상 넣어주세요")
@@ -21,7 +19,6 @@ const Logout = () => {
     return true
   }
 
-  // alert Redux로 관리
   const isValidPassword = (passwordValue: string) => {
     if (passwordValue.length < 5) {
       alert("password는 5글자 이상 넣어주세요")

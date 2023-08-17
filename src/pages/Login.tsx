@@ -13,7 +13,6 @@ const Login = () => {
   const idValue = String(id) || ""
   const passwordValue = String(password) || ""
 
-  // alert Redux로 관리
   const isValidId = (idValue: string) => {
     if (idValue.length < 5) {
       alert("id는 5글자 이상 넣어주세요")
@@ -22,7 +21,6 @@ const Login = () => {
     return true
   }
 
-  // alert Redux로 관리
   const isValidPassword = (passwordValue: string) => {
     if (passwordValue.length < 5) {
       alert("password는 5글자 이상 넣어주세요")

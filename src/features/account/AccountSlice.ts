@@ -25,7 +25,37 @@ export const AccountSlice = createSlice({
   initialState,
   reducers: {
     addAccount: (state, action: PayloadAction<AccountState>) => {
+      alert("회원가입 성공")
       return [...state, { ...action.payload, status: "logout" }]
+    },
+    loginAccount: (state, action: PayloadAction<AccountState>) => {
+      const { id, password } = action.payload
+
+      const accountIndex = state.findIndex(
+        (account) => account.id === id && account.password === password,
+      )
+
+      if (accountIndex !== -1) {
+        state[accountIndex].status = "login"
+        alert("로그인 성공")
+      } else {
+        alert("로그인 실패 Id와 Password를 확인해 주세요")
+      }
+    },
+
+    logoutAccount: (state, action: PayloadAction<AccountState>) => {
+      const { id, password } = action.payload
+
+      const accountIndex = state.findIndex(
+        (account) => account.id === id && account.password === password,
+      )
+
+      if (accountIndex !== -1) {
+        state[accountIndex].status = "logout"
+        alert("로그아웃 성공")
+      } else {
+        alert("로그아웃 실패 Id와 Password를 확인해 주세요")
+      }
     },
     removeAccount: (state, action: PayloadAction<number>) => {
       return state.filter((_, index) => index !== action.payload)
@@ -41,7 +71,13 @@ export const AccountSlice = createSlice({
   },
 })
 
-export const { addAccount, removeAccount, updateAccount } = AccountSlice.actions
+export const {
+  addAccount,
+  removeAccount,
+  updateAccount,
+  loginAccount,
+  logoutAccount,
+} = AccountSlice.actions
 export const selectAccounts = (state: RootState) => state.account
 
 export default AccountSlice.reducer

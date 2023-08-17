@@ -2,7 +2,7 @@ import { Button, Container, Divider, Grid, Input, Text } from "@chakra-ui/react"
 import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { addAccount } from "../features/account/AccountSlice"
+import { loginAccount } from "../features/account/AccountSlice"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -34,14 +34,13 @@ const Login = () => {
   const loginEventHandler = () => {
     if (isValidId(idValue) && isValidPassword(passwordValue)) {
       dispatch(
-        addAccount({
+        loginAccount({
           id: idValue,
           password: passwordValue,
         }),
       )
       setId("")
       setPassword("")
-      alert("회원가입 완료")
     }
   }
 

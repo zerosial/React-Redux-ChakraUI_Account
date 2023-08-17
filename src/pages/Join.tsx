@@ -1,5 +1,4 @@
-import { useState } from "react"
-
+import React, { useState } from "react"
 import { useAppDispatch } from "../app/hooks"
 import { addAccount } from "../features/account/AccountSlice"
 import { Button, Container, Grid, Input } from "@chakra-ui/react"
@@ -9,46 +8,32 @@ const Join = () => {
   const [id, setId] = useState("")
   const [password, setPassword] = useState("")
 
-  const idValue = String(id) || ""
-  const passwordValue = String(password) || ""
-
-  const isValidId = (idValue: string) => {
-    if (idValue.length < 5) {
-      alert("id는 5글자 이상 넣어주세요")
+  const isValidInput = (value: string) => {
+    if (value.trim().length <= 5) {
+      alert("아이디와 비밀번호는 5글자 이상 입력하세요")
       return false
     }
     return true
   }
 
-  const isValidPassword = (passwordValue: string) => {
-    if (passwordValue.length < 5) {
-      alert("password는 5글자 이상 넣어주세요")
-      return false
-    }
-    return true
-  }
-
-  const joinEventHandler = () => {
-    if (isValidId(idValue) && isValidPassword(passwordValue)) {
-      dispatch(
-        addAccount({
-          id: idValue,
-          password: passwordValue,
-        }),
-      )
+  const handleJoin = () => {
+    if (isValidInput(id) && isValidInput(password)) {
+      dispatch(addAccount({ id, password }))
       setId("")
       setPassword("")
+    }
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleJoin()
     }
   }
 
   return (
     <Container maxW={"50%"}>
       <Grid justifyItems="center" gap={4}>
-        <form
-          onKeyDown={(e) => {
-            e.key === "Enter" && joinEventHandler()
-          }}
-        >
+        <form onKeyDown={handleKeyDown}>
           <Input
             aria-label="Set Id"
             value={id}
@@ -62,7 +47,7 @@ const Join = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </form>
-        <Button onClick={joinEventHandler}>회원가입</Button>
+        <Button onClick={handleJoin}>회원가입</Button>
       </Grid>
     </Container>
   )

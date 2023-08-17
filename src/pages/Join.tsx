@@ -30,7 +30,7 @@ const Join = () => {
     return true
   }
 
-  const loginEventHandler = () => {
+  const joinEventHandler = () => {
     if (isValidId(idValue) && isValidPassword(passwordValue)) {
       dispatch(
         addAccount({
@@ -49,13 +49,14 @@ const Join = () => {
       <Grid justifyItems="center" gap={4}>
         <form
           onKeyDown={(e) => {
-            e.key === "Enter" && loginEventHandler()
+            e.key === "Enter" && joinEventHandler()
           }}
         >
           <Input
             aria-label="Set Id"
             value={id}
             onChange={(e) => setId(e.target.value)}
+            mb={4}
           />
           <Input
             type="password"
@@ -64,7 +65,7 @@ const Join = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </form>
-        <Button onClick={loginEventHandler}>add account</Button>
+        <Button onClick={joinEventHandler}>회원가입</Button>
       </Grid>
     </Container>
   )

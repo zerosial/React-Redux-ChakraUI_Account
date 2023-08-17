@@ -14,6 +14,9 @@ const Layout = () => {
         <Link to={"/login"}>
           <Button>로그인</Button>
         </Link>
+        <Link to={"/logout"}>
+          <Button>로그아웃</Button>
+        </Link>
       </Flex>
       <Outlet />
     </>

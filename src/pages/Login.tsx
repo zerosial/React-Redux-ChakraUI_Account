@@ -4,7 +4,7 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { loginAccount } from "../features/account/AccountSlice"
 import { isValidInput } from "../utils/validation"
-import CustomForm from "components/CustomForm"
+import CustomForm from "../components/CustomForm"
 
 const Login = () => {
   const navigate = useNavigate()

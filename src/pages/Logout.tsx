@@ -3,7 +3,7 @@ import { useAppDispatch } from "../app/hooks"
 import { useState } from "react"
 import { logoutAccount } from "../features/account/AccountSlice"
 import { isValidInput } from "../utils/validation"
-import CustomForm from "components/CustomForm"
+import CustomForm from "../components/CustomForm"
 
 const Logout = () => {
   const dispatch = useAppDispatch()

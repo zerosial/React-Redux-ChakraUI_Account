@@ -8,13 +8,13 @@ interface CustomFormProps {
   onKeyDown: (event: React.KeyboardEvent) => void
 }
 
-const CustomForm: React.FC<CustomFormProps> = ({
+const CustomForm = ({
   id,
   password,
   onIdChange,
   onPasswordChange,
   onKeyDown,
-}) => {
+}: CustomFormProps) => {
   return (
     <form onKeyDown={onKeyDown}>
       <Input
